@@ -4,11 +4,24 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
+<div class='container'> 
+<div class='main'> 
 {% set maxPosts = collections.posts.length | min(3) %}
-<h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
+<h1>{% if maxPosts == 1 %}Última Publicación{% else %}{{ maxPosts }} Últimas Publicaciones{% endif %}</h1>
 
 {% set postslist = collections.posts | head(-3) %}
 {% set postslistCounter = collections.posts | length %}
 {% include "postslist.njk" %}
 
-<p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+<p>Más publicaciones podéis encontrar en  <a href="{{ '/posts/' | url }}">el archivo</a>.</p>
+</div>
+<div class='sidebar'> 
+<h2>Tags</h2>
+
+{% for tag in collections.tagList %}
+  {% set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+  <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
+{% endfor %}
+
+</div>
+</div>

@@ -1,8 +1,8 @@
 {
-  "title": "Your Blog Name",
+  "title": "Blog con Eleventy",
   "url": "https://example.com/",
-  "language": "en",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "language": "es",
+  "description": "Escribiendo sobre la web con eleventy.",
   "feed": {
     "subtitle": "I am writing about my experiences as a naval navel-gazer.",
     "filename": "feed.xml",
@@ -14,8 +14,8 @@
     "url": "https://example.com/feed/feed.json"
   },
   "author": {
-    "name": "Your Name Here",
-    "email": "youremailaddress@example.com",
-    "url": "https://example.com/about-me/"
+    "name": "José Antonio Cano",
+    "email": "canodelacuadra@gmail.com",
+    "url": "canodelacuadra.github.io"
   }
 }
