@@ -5,11 +5,14 @@ eleventyNavigation:
   order: 1
 ---
 <div class='container'> 
-<div class='main'> 
-{% set maxPosts = collections.posts.length | min(3) %}
-<h1>{% if maxPosts == 1 %}Última Publicación{% else %}{{ maxPosts }} Últimas Publicaciones{% endif %}</h1>
 
-{% set postslist = collections.posts | head(-3) %}
+<div class='main'> 
+ <h1>{{metadata.description}}</h1>
+  
+{% set maxPosts = collections.posts.length | min(5) %}
+<h2>{% if maxPosts == 1 %}Última Publicación{% else %}{{ maxPosts }} Últimas Publicaciones{% endif %}</h2>
+
+{% set postslist = collections.posts | head(-5) %}
 {% set postslistCounter = collections.posts | length %}
 {% include "postslist.njk" %}
 

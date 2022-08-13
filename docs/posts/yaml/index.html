@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAML</title>
+    <meta name="description" content="Definición y conceptos básicos.">
+
+    <link rel="stylesheet" href="/blog/css/index.css">
+    <link rel="stylesheet" href="/blog/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/blog/css/prism-diff.css">
+    <link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Blog de desarrollo web">
+    <link rel="alternate" href="/blog/feed/feed.json" type="application/json" title="Blog de desarrollo web">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/blog/">Blog de desarrollo web</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/blog/">Home</a></li>
+        <li class="nav-item"><a href="/blog/posts/">Archivo</a></li>
+        <li class="nav-item"><a href="/blog/about/">sobre mí</a></li>
+      </ul>
+  
+     
+     
+    </header>
+
+    <main class="tmpl-post">
+
+   
+
+      <h1>YAML</h1>
+
+<time datetime="2022-07-24">24 Jul 2022</time>
+<a href="/blog/tags/lenguajes/" class="post-tag">lenguajes</a>
+<a href="/blog/tags/programacion/" class="post-tag">programación</a>
+<a href="/blog/tags/serializacion/" class="post-tag">serialización</a>
+
+<p>YAML es un formato de serialización de datos legible por humanos inspirado en lenguajes como XML, C, Python, Perl, así como en el formato de los correos electrónicos (RFC 2822). YAML fue propuesto por Clark Evans en 2001, quien lo diseñó junto a Ingy döt Net y Oren Ben-Kiki.</p>
+<p>YAML es un acrónimo recursivo que significa <strong>Y</strong>AML <strong>A</strong>in't <strong>M</strong>arkup <strong>L</strong>anguage (en castellano, ‘YAML no es un lenguaje de marcado’).​ A comienzos de su desarrollo, YAML significaba Yet Another Markup Language (‘otro lenguaje de marcado más’) para distinguir su propósito centrado en los datos en lugar del marcado de documentos. Sin embargo, dado que se usa frecuentemente XML para serializar datos y XML es un auténtico lenguaje de marcado de documentos, es razonable considerar YAML como un lenguaje de marcado ligero.</p>
+<h2 id="caracteristicas" tabindex="-1">Características <a class="direct-link" href="#caracteristicas" aria-hidden="true">#</a></h2>
+<p>YAML fue creado bajo la creencia de que todos los datos pueden ser representados adecuadamente como combinaciones de listas, hashes (mapeos) y datos escalares (valores simples).</p>
+<p>La sintaxis es relativamente sencilla y fue diseñada teniendo en cuenta que fuera muy legible pero que a la vez fuese fácilmente mapeable a los tipos de datos más comunes en la mayoría de los lenguajes de alto nivel. Además, YAML utiliza una notación basada en la sangría y/o un conjunto de caracteres  distintos de los que se usan en XML, haciendo que sea fácil componer ambos lenguajes.</p>
+<ul>
+<li>Los contenidos en YAML se describen utilizando el conjunto de caracteres imprimibles de Unicode, bien en UTF-8 o UTF-16.</li>
+<li>La estructura del documento se denota indentando con espacios en blanco; sin embargo no se permite el uso de caracteres de tabulación para sangrar.</li>
+<li>Los miembros de las listas se denotan encabezados por un guion ( - ) con un miembro por cada línea, o bien entre corchetes ( [   ] ) y separados por coma espacio ( ,   ).</li>
+<li>Los vectores asociativos se representan usando los dos puntos seguidos por un espacio. en la forma &quot;clave: valor&quot;, bien uno por línea o entre llaves ( {   } ) y separados por coma seguida de espacio ( ,   ).</li>
+<li>Un valor de un vector asociativo viene precedido por un signo de interrogación ( ? ), lo que permite que se construyan claves complejas sin ambigüedad.</li>
+<li>Los valores sencillos (o escalares) por lo general aparecen sin entrecomillar, pero pueden incluirse entre comillas dobles ( &quot; ), o comillas simples ( ' ).</li>
+<li>En las comillas dobles, los caracteres especiales se pueden representar con secuencias de escape similares a las del lenguaje de programación C, que comienzan con una barra invertida ( \ ).</li>
+<li>Se pueden incluir múltiples documentos dentro de un único flujo, separándolos por tres guiones ( --- ); los tres puntos ( ... ) indican el fin de un documento dentro de un flujo.</li>
+<li>Los nodos repetidos se pueden denotar con un ampersand ( &amp; ) y ser referidos posteriormente usando el asterisco ( * )</li>
+<li>Los comentarios vienen encabezados por la almohadilla ( # ) y continúan hasta el final de la línea.</li>
+<li>Los nodos pueden etiquetarse con un tipo o etiqueta utilizando el signo de exclamación( ! ) seguido de una cadena que puede ser expandida en una URL.</li>
+<li>Los documentos YAML pueden ser precedidos por directivas compuestas por un signo de porcentaje ( % ) seguidos de un nombre y parámetros delimitados por espacios.. Hay definidas dos directivas en YAML 1.1:
+<ul>
+<li>La directiva %YAML se utiliza para identificar la versión de YAML en un documento dado.</li>
+<li>La directiva %TAG se utiliza como atajo para los prefijos de URIs. Estos atajos pueden ser usados en las etiquetas de tipos de nodos.</li>
+</ul>
+</li>
+<li>YAML requiere que las comas y puntos y comas que se utilicen como separadores en las listas sean seguidos por un espacio, de forma que los valores escalares que contengan signos de puntuación (como 5,280 o <a href="http://www.wikipedia.org">http://www.wikipedia.org</a>) se puedan representar sin necesidad de utilizar comillas.</li>
+</ul>
+<p>Hay dos caracteres adicionales que están reservados en YAML para su posible estandarización en un futuro: la arroba ( @ ) y el acento grave ( ` ).</p>
+<h2 id="ejemplos" tabindex="-1">Ejemplos <a class="direct-link" href="#ejemplos" aria-hidden="true">#</a></h2>
+<h3 id="listas" tabindex="-1">Listas <a class="direct-link" href="#listas" aria-hidden="true">#</a></h3>
+<pre class="language-yaml"><code class="language-yaml"> <span class="token punctuation">---</span> <span class="token comment"># Películas favoritas, formato de bloque</span><br> <span class="token punctuation">-</span> BotijoAzul<br> <span class="token punctuation">-</span> BotijoVerde<br> <span class="token punctuation">-</span> Viridiana<br> <span class="token punctuation">-</span> Psicosis<br> <span class="token punctuation">...</span><br><br> <span class="token punctuation">---</span> <span class="token comment"># Lista de la compra, formato en línea</span><br> <span class="token punctuation">[</span>leche<span class="token punctuation">,</span> pan<span class="token punctuation">,</span> huevos<span class="token punctuation">]</span><br> <span class="token punctuation">[</span>chorizo<span class="token punctuation">,</span> morcilla<span class="token punctuation">,</span> botijo<span class="token punctuation">,</span> pollo<span class="token punctuation">]</span></code></pre>
+<h3 id="vectores-asociativos" tabindex="-1">Vectores asociativos <a class="direct-link" href="#vectores-asociativos" aria-hidden="true">#</a></h3>
+<pre class="language-yaml"><code class="language-yaml"> <span class="token punctuation">---</span> <span class="token comment"># Bloque</span><br> <span class="token key atrule">nombre</span><span class="token punctuation">:</span> Pepe López<br> <span class="token key atrule">edad</span><span class="token punctuation">:</span> <span class="token number">33</span><br> <span class="token punctuation">---</span> <span class="token comment"># En  línea</span><br> <span class="token punctuation">{</span><span class="token key atrule">nombre</span><span class="token punctuation">:</span> Pepe López<span class="token punctuation">,</span> <span class="token key atrule">edad</span><span class="token punctuation">:</span> <span class="token number">33</span><span class="token punctuation">}</span></code></pre>
+<h3 id="literales-de-bloque" tabindex="-1">Literales de bloque <a class="direct-link" href="#literales-de-bloque" aria-hidden="true">#</a></h3>
+<p>Preservando retornos de línea</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">---</span> <span class="token punctuation">|</span><span class="token scalar string"><br> El texto mantiene su estructura,<br> en el sentido que preserva los retornos de línea.</span><br> <br> Esto incluye también líneas en blanco.</code></pre>
+<p>Ignorando retornos de línea</p>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">---</span> <span class="token punctuation">></span><span class="token scalar string"><br> El texto rodeado <br> será formateado <br> como un único<br> párrafo</span></code></pre>
+<p>Las líneas en blanco
+denotan saltos de párrafo.</p>
+<h3 id="listas-de-vectores-asociativos" tabindex="-1">Listas de vectores asociativos <a class="direct-link" href="#listas-de-vectores-asociativos" aria-hidden="true">#</a></h3>
+<pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">-</span> <span class="token punctuation">{</span><span class="token key atrule">nombre</span><span class="token punctuation">:</span> Pepe López<span class="token punctuation">,</span> <span class="token key atrule">edad</span><span class="token punctuation">:</span> <span class="token number">33</span><span class="token punctuation">}</span><br><span class="token punctuation">-</span> <span class="token key atrule">nombre</span><span class="token punctuation">:</span> Maria Garcia</code></pre>
+<h3 id="vectores-asociativos-de-listas" tabindex="-1">Vectores asociativos de listas <a class="direct-link" href="#vectores-asociativos-de-listas" aria-hidden="true">#</a></h3>
+<pre class="language-yaml"><code class="language-yaml"><span class="token key atrule">hombres</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>Pepe Lopez<span class="token punctuation">,</span> Guillermo Garcia<span class="token punctuation">]</span><br><span class="token key atrule">mujeres</span><span class="token punctuation">:</span><br> <span class="token punctuation">-</span> María García<br> <span class="token punctuation">-</span> Susana Márquez</code></pre>
+
+<hr>
+<ul class='nav-post'><li>Siguiente: <a href="/blog/posts/aviso-cookies/">GDPR Cookie Notice</a></li><li>Anterior: <a href="/blog/posts/template-engine/">template engine</a></li>
+</ul>
+
+    </main>
+
+    <footer>
+      <p> 
+        &copy; José Antonio Cano 2022
+        &nbsp;
+        <a title='sitemap.xml' href='/blog/sitemap.xml'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+</svg></a>
+&nbsp;
+  <a title='rss xml' href='/blog/feed/feed.xml'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"/>
+</svg>
+  </a>
+&nbsp;
+  <a  title='rss json' href='/blog/feed/feed.json'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></a>
+
+      </p>
+
+    </footer>
+ <script>
+
+
+</script> 
+    <!-- Current page: /blog/posts/yaml/ -->
+  </body>
+</html>

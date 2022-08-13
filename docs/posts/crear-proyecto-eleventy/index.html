@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear proyecto web con eleventy</title>
+    <meta name="description" content="Creando tu primer proyecto con Eleventy">
+
+    <link rel="stylesheet" href="/blog/css/index.css">
+    <link rel="stylesheet" href="/blog/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/blog/css/prism-diff.css">
+    <link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Blog de desarrollo web">
+    <link rel="alternate" href="/blog/feed/feed.json" type="application/json" title="Blog de desarrollo web">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/blog/">Blog de desarrollo web</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/blog/">Home</a></li>
+        <li class="nav-item"><a href="/blog/posts/">Archivo</a></li>
+        <li class="nav-item"><a href="/blog/about/">sobre mí</a></li>
+      </ul>
+  
+     
+     
+    </header>
+
+    <main class="tmpl-post">
+
+   
+
+      <h1>Crear proyecto web con eleventy</h1>
+
+<time datetime="2018-09-30">30 Sep 2018</time>
+<a href="/blog/tags/js/" class="post-tag">js</a>
+<a href="/blog/tags/cms/" class="post-tag">cms</a>
+
+<ol>
+<li>Crea una carpeta para el proyecto
+Para crear un nuevo proyecto de Eleventy, solo necesita crear una carpeta vacía:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> eleventy-01<br>$ <span class="token builtin class-name">cd</span> eleventy-01</code></pre>
+<ol start="2">
+<li>Crear un archivo package.json
+Dentro de esta carpeta de proyecto recién creada, debes crear un archivo inicial para json: package.json, de modo que puedas usar la herramienta de Node.js Package Manager (npm) posteriormente, para la administración de las dependencias:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> init -y</code></pre>
+<ol start="3">
+<li>Instalación de Eleventy
+Habiendo creado el archivo package.json a continuación debemos agregar el paquete de Eleventy ( @11ty/eleventy ) como una dependencia de desarrollo, dentro de nuestro proyecto, usando el comando npm install:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">npm</span> <span class="token function">install</span> --save-dev @11ty/eleventy</code></pre>
+<ol start="4">
+<li>Ejecutando Eleventy
+Ahora solamente debes probar que Eleventy ya esta instalado. Ejecuta el comando, y la consola te mostrará una respuesta del número de ficheros creados y el tiempo que ha tardado en ello.</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ npx @11/eleventy</code></pre>
+<p>Como aún no se han creado archivos adicional a la carpeta del proyecto, el resultado debería ser de 0 archivos.
+6.  También puedes iniciar Eleventy en modo de recarga en caliente, utilizando la opción –serve:</p>
+<pre class="language-bash"><code class="language-bash">$ npx @11/eleventy --serve</code></pre>
+<p>En este caso, el comando sigue ejecutándose y está atento a cualquier cambio de archivo de los archivos dentro de la plantilla y dentro de la carpeta del proyecto actual. Si el contenido de un archivo se cambia y luego se guarda, Elevanty reconoce ese cambio automáticamente y genera un nuevo archivo de salida.</p>
+<ol start="7">
+<li>Adición de plantillas
+Ahora es el momento de ver realmente a Eleventy en acción y eso requiere que agreguemos archivos de plantilla a nuestro proyecto. En primer lugar, estamos creando un archivo de plantilla especial, una plantilla de diseño. Al utilizar una plantilla de diseño, puedes ajustar el contenido con un diseño común. Para crear dicha plantilla, primero agregamos una nueva carpeta denominada _includes al proyecto:</li>
+</ol>
+<pre class="language-bash"><code class="language-bash">$ <span class="token function">mkdir</span> _includes</code></pre>
+<p>Luego, dentro de esta nueva carpeta _includes, creamos un nuevo archivo vacío con el nombre de mylayout.njk e insertamos el siguiente código de plantilla:</p>
+<pre class="language-html"><code class="language-html">---<br>site_title: Mi Primer Sitio de Eleventy<br>---<br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span> NaN<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span> <br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hr</span><span class="token punctuation">/></span></span> <br> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>small</span><span class="token punctuation">></span></span>by<br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://ciberninjas.com<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>Ciberninjas.com<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>small</span><span class="token punctuation">></span></span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span></code></pre>
+<p>Al usar la extensión de archivo njk, estamos indicando que estamos usando el lenguaje de plantillas Nunjucks dentro de este archivo. Si quieres saber más sobre Nunjucks puedes encontrar el sitio web del proyecto y la documentación correspondiente en Mozilla Nunjucks.</p>
+<p>El código comienza con una sección preliminar al principio. Dentro de la sección de contenido inicial, puede definir datos que luego se pueden usar en el siguiente código de plantilla. En el ejemplo, estamos usando la sección principal para definir la propiedad site_title que contiene una cadena para el valor del título.</p>
+<p>Dentro del código de la plantilla, accedemos a site_title utilizando llaves dobles. El valor de esta propiedad se utiliza para establecer el título de la página.</p>
+<ol start="8">
+<li>Creación de plantillas utilizando un diseño
+Ahora creemos dos plantillas más (usando Markdown como el lenguaje de la plantilla) usando nuestra plantilla de diseño creada previamente: Cree un nuevo archivo <a href="http://post-01.md">post-01.md</a> en la carpeta del proyecto e inserte el siguiente código de Markdown:</li>
+</ol>
+<pre class="language-html"><code class="language-html">---<br>layout: mylayout.njk<br>title: Mi primer post del blog.<br>---<br>Crear proyecto web con eleventy<br><br><br> <br>This is my first blog post! Have much fun using Eleventy, an easy and flexible JavaScript-based static site generator.</code></pre>
+<p>Estas plantillas, generan una publicación simple sobre un blog, que aún no posee ningun tipo de CSS ni estilo decorativo incluido.</p>
+
+<hr>
+<ul class='nav-post'><li>Siguiente: <a href="/blog/posts/core-web-vitals/">Core web vitals</a></li><li>Anterior: <a href="/blog/posts/eleventy/">Eleventy.</a></li>
+</ul>
+
+    </main>
+
+    <footer>
+      <p> 
+        &copy; José Antonio Cano 2022
+        &nbsp;
+        <a title='sitemap.xml' href='/blog/sitemap.xml'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+</svg></a>
+&nbsp;
+  <a title='rss xml' href='/blog/feed/feed.xml'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"/>
+</svg>
+  </a>
+&nbsp;
+  <a  title='rss json' href='/blog/feed/feed.json'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></a>
+
+      </p>
+
+    </footer>
+ <script>
+
+
+</script> 
+    <!-- Current page: /blog/posts/crear-proyecto-eleventy/ -->
+  </body>
+</html>

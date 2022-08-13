@@ -30,6 +30,8 @@
     --background-color: #15202b;
   }
 }
+ 
+
 
 
 /* Global stylesheet */
@@ -72,13 +74,23 @@ main {
 main :first-child {
   margin-top: 0;
 }
-header {
+header , header a, .nav-item a {
+  background-color: #f5f5f5;
+    color: rgb(243, 240, 240);
   border-bottom: 1px dashed var(--color-gray-20);
 }
 header:after {
   content: "";
   display: table;
   clear: both;
+}
+footer{
+    background-color: #15202b;
+    padding: .1em .5em .5em;
+    color: rgb(243, 240, 240);
+}
+footer svg{
+  fill:rgb(243, 240, 240);
 }
 
 table {
@@ -145,6 +157,11 @@ code {
   font-weight: 700;
   text-decoration: underline;
 }
+.emoji-luz{
+  float:right;
+  padding-right:2em;
+}
+
 
 /* Posts list */
 .postlist {
@@ -188,7 +205,9 @@ code {
   font-weight: 700;
 }
 
-
+.description{
+  font-style: oblique;
+}
 /* Tags */
 .post-tag {
   display: inline-flex;
@@ -222,6 +241,10 @@ a[href].post-tag:focus {
 /* Infobox */
 :root {
   --color-infobox: rgb(235, 202, 11);
+}
+/* navegación de posts */
+.nav-post{
+  background-color: #8fceff;
 }
 @media (prefers-color-scheme: dark) {
   :root {

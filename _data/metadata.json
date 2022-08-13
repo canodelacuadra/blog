@@ -1,17 +1,17 @@
 {
-  "title": "Blog con Eleventy",
-  "url": "https://example.com/",
+  "title": "Blog de desarrollo web",
+  "url": "https://canodelacuadra.github.io/blog/",
   "language": "es",
-  "description": "Escribiendo sobre la web con eleventy.",
+  "description": "Mi jardín digital .",
   "feed": {
-    "subtitle": "I am writing about my experiences as a naval navel-gazer.",
+    "subtitle": "Mi jardín digital en github.",
     "filename": "feed.xml",
     "path": "/feed/feed.xml",
-    "id": "https://example.com/"
+    "id": "https://canodelacuadra.github.io/blog/"
   },
   "jsonfeed": {
     "path": "/feed/feed.json",
-    "url": "https://example.com/feed/feed.json"
+    "url": "https://canodelacuadra.github.io/blog/feed/feed.json"
   },
   "author": {
     "name": "José Antonio Cano",

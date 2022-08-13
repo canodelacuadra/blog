@@ -2,67 +2,112 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://example.com/blog/posts/firstpost/</loc>
-    <lastmod>2018-05-01</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://example.com/blog/posts/secondpost/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/nunjucks/</loc>
     <lastmod>2018-07-04</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/posts/thirdpost/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/eleventy/</loc>
     <lastmod>2018-08-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/posts/fourthpost/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/crear-proyecto-eleventy/</loc>
     <lastmod>2018-09-30</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/about/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/core-web-vitals/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/posts/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/template-engine/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/yaml/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/page-list/</loc>
+    <loc>https://canodelacuadra.github.io/blog/about/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/tags/</loc>
+    <loc>https://canodelacuadra.github.io/blog/posts/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/tags/another-tag/</loc>
+    <loc>https://canodelacuadra.github.io/blog/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/tags/second-tag/</loc>
+    <loc>https://canodelacuadra.github.io/blog/page-list/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/tags/number-2/</loc>
+    <loc>https://canodelacuadra.github.io/blog/tags/</loc>
     <lastmod>2022-07-24</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/blog/tags/posts-with-two-tags/</loc>
+    <loc>https://canodelacuadra.github.io/blog/tags/cookies/</loc>
     <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/cms/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/wordpress/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/analitica-web/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/js/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/template/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/utilidades/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/programacion/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/lenguajes/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/tags/serializacion/</loc>
+    <lastmod>2022-07-24</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://canodelacuadra.github.io/blog/posts/aviso-cookies/</loc>
+    <lastmod>2022-07-26</lastmod>
   </url>
 </urlset>

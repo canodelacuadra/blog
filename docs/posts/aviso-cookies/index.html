@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDPR Cookie Notice</title>
+    <meta name="description" content="Implementar un aviso de cookies para cumplir con la normativa RGPD en el 2021">
+
+    <link rel="stylesheet" href="/blog/css/index.css">
+    <link rel="stylesheet" href="/blog/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/blog/css/prism-diff.css">
+    <link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Blog de desarrollo web">
+    <link rel="alternate" href="/blog/feed/feed.json" type="application/json" title="Blog de desarrollo web">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/blog/">Blog de desarrollo web</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/blog/">Home</a></li>
+        <li class="nav-item"><a href="/blog/posts/">Archivo</a></li>
+        <li class="nav-item"><a href="/blog/about/">sobre mí</a></li>
+      </ul>
+  
+     
+     
+    </header>
+
+    <main class="tmpl-post">
+
+   
+
+      <h1>GDPR Cookie Notice</h1>
+
+<time datetime="2022-07-26">26 Jul 2022</time>
+<a href="/blog/tags/cookies/" class="post-tag">cookies</a>
+<a href="/blog/tags/cms/" class="post-tag">cms</a>
+<a href="/blog/tags/wordpress/" class="post-tag">wordpress</a>
+
+<p>Es posible tener sitios web que no utilicen cookies, pero a veces alguna  funcionalidad  incorpora cookies (emergentes, llamadas a la acción, analítica).</p>
+<p>Hasta no hace mucho el aviso de cookies se limitaba a informar de que el sitio web usaba cookies, informando de qué tipo de cookies usabas y su propósito. Y aquí se cumplía lo de «hecha la ley, hecha la trampa». Un inocente aviso de cookies podía servir para cargar infinidad de cookies de terceros. Para aclararnos. Estás en el año 2021 y en cuestión de cookies necesitas:</p>
+<ol>
+<li>Informar de qué  cookies usas, el tipo de cookies y su propósito.</li>
+<li>Diferenciar su propósito.</li>
+<li>Dar opción al visitante de seleccionar las cookies que acepta y las que no (esta es la novedad)</li>
+<li>Evitar consentimientos tácitos o generados por defecto (si tú, no hagas trampas).</li>
+</ol>
+<p>Si usas cookies de terceros, necesitas a partir de estos requerimientos necesitas implementar un código que te permita solucionar los puntos C y D. En el mundo WordPress existen multitud de plugins que gestionan estas cuestiones. Quizás muchos sufran de problemas de personalización o como ya ha pasado de seguridad y mantenimiento. Existen <a href="https://www.osano.com/cookieconsent">servicios externos especializados</a> en cookies o lo que es casi mejor, soluciones listas para personalizar con un poco de código.</p>
+<p>La ventaja de personalizar un código genérico es que suele darnos más opciones de personalización, nos permite ajustar la carga diferida y realizar a veces también traducciones. En este caso el ejemplo parte de una utilidad llamada <a href="https://github.com/passatgt/gdpr-cookie-notice">GDPR Cookie Notice</a>. Se trata de una sencilla solución basada en JavaScript que permite mostrar un aviso de cookies en nuestro sitio, cumpliendo con los requerimientos de la ley europea.</p>
+<h2 id="pasos-para-configurar-el-aviso-de-cookies-con-gdpr-cookie-notice" tabindex="-1">Pasos para configurar el aviso de cookies con GDPR Cookie Notice <a class="direct-link" href="#pasos-para-configurar-el-aviso-de-cookies-con-gdpr-cookie-notice" aria-hidden="true">#</a></h2>
+<p>Como podrás comprobar esta misma web utiliza este código con alguna personalización adicional. Lo que necesitamos es cargar diferentes elementos:</p>
+<ul>
+<li>El propio código JavaScript que gestiona el mensaje (script.js, antes de la etiqueta final body )</li>
+<li>Una hoja de estilo con el CSS (style.css, en la cabecera antes del final del head)</li>
+<li>Un archivo JS con las traducciones (es.js, en mi caso español, después de script.js antes de la etiqueta final body )</li>
+<li>Finalmente cargar al final de la etiqueta body, un script con la llamada a la función gdprCookieNotice, pasando como argumento un objeto de opciones (ver en la documentación las opciones disponibles).
+A continuación dejo una estructura básica de cómo quedarían los archivos:</li>
+</ul>
+<pre class="language-html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">doctype</span> <span class="token name">html</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>es<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>  <span class="token comment">&lt;!-- CSS con estilos de GDPR Cookie Notice --></span><br>  <span class="token comment">&lt;!-- https://github.com/passatgt/gdpr-cookie-notice --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assets/gdpr/style.css<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><br>  <br>  <span class="token comment">&lt;!-- JS para cargar selectivamente Google Analytics según las preferencias del visitante --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>  document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'gdprCookiesEnabled'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>        <span class="token keyword">if</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>detail<span class="token punctuation">.</span>analytics<span class="token punctuation">)</span> <span class="token punctuation">{</span> <br>          <br>          <span class="token keyword">var</span> script <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>          script<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">"https://www.googletagmanager.com/gtag/js?id=UA-XXXX-X"</span><span class="token punctuation">;</span><br>	  script<span class="token punctuation">.</span>async <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span><br>          document<span class="token punctuation">.</span>head<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>script<span class="token punctuation">)</span><span class="token punctuation">;</span><br>          <br>          window<span class="token punctuation">.</span>dataLayer <span class="token operator">=</span> window<span class="token punctuation">.</span>dataLayer <span class="token operator">||</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span><br>          <span class="token keyword">function</span> <span class="token function">gtag</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>dataLayer<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span><br>          <span class="token function">gtag</span><span class="token punctuation">(</span><span class="token string">'js'</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>          <span class="token function">gtag</span><span class="token punctuation">(</span><span class="token string">'config'</span><span class="token punctuation">,</span> <span class="token string">'UA-XXX-X'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <br>        <span class="token punctuation">}</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span>Aquí tu fantástico contenido<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br>  <br>  <span class="token comment">&lt;!-- Script principal de GDPR Cookie Notice --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assets/gdpr/script.js?ver=5.7<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>gdpr-js-js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <br>  <span class="token comment">&lt;!-- Script con las traducciones al español --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/assets/gdpr/lang/es.js?ver=5.7<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>gdpr-lang-js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <br>  <span class="token comment">&lt;!-- Llamada y opciones para el GDPR Cookie Notice --></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript"><br>  <span class="token function">gdprCookieNotice</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>		  <span class="token literal-property property">locale</span><span class="token operator">:</span> <span class="token string">'es'</span><span class="token punctuation">,</span> <span class="token comment">// si lo cambias debes tener un archivo como el de arriba es.js</span><br>		  <span class="token literal-property property">timeout</span><span class="token operator">:</span> <span class="token number">1500</span><span class="token punctuation">,</span> <span class="token comment">// tiempo de espera</span><br>		  <span class="token literal-property property">expiration</span><span class="token operator">:</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token comment">// días de duración de la cookie</span><br>		  <span class="token literal-property property">domain</span><span class="token operator">:</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hostname<span class="token punctuation">,</span> <span class="token comment">// dominio</span><br>		  <span class="token literal-property property">implicit</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// debe se false, porque de lo contrario no cumples</span><br>		  <span class="token literal-property property">statement</span><span class="token operator">:</span> <span class="token string">'/condiciones'</span><span class="token punctuation">,</span> <span class="token comment">// url a la política de cookies / legal</span><br>		  <span class="token literal-property property">analytics</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'ga'</span><span class="token punctuation">]</span> <span class="token comment">// aquí el grupo analitica pero hay más en opciones</span><br>  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span><br>  <br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span></code></pre>
+<p>Hay cosas interesantes en el código. Vayamos por líneas:</p>
+<ul>
+<li>Línea 9. Detección y carga selectiva de las cookies de analítica con Google Analytics. Es una adaptación necesaria para cumplir con la legislación. Si el visitante rechaza las cookies de analíticas, no carga ese código gracias al condicional (e.detail.analytics). Es importante ver las opciones que nos ofrece el código para agrupar por cookies de marketing, rendimiento o analítica. La cuestión es agrupar por finalidad y así que el usuario escoja. Por supuesto esto sirve para casos de sitios pequeños o medianos. Los grandes necesitarán configuraciones más avanzadas como las que ofrece Osano</li>
+<li>Línea 33. Aquí se carga las traducciones. Es fácil porque sólo tienes que copiar el original y traducir las cadenas al idiomas. El nombre este archivo debe coincidir con la etiqueta html lang.</li>
+<li>Línea 37. La llamada principal a la configuración personalizada del sitio web. Como se puede ver, aquí es bastante sencilla y se limita a diferenciar las cookies propias (la del propio aviso) y las de analítica. Con tiempos de caducidad, idioma, retardo en aparecer, dominio…etc.</li>
+</ul>
+<p>Si has visitado el sitio web te habrás hecho una idea del funcioamento. Aparece un mensaje en la parte inferior donde hay un texto, un botón y un enlace a la configuración. El usuario puede aceptar y cargar la cookie de aviso, o puede optar por cargar también la de analítica web. Cumplimos por tanto con los requisitos de la legislación de cookies. Evitamos el consentimiento expreso permitiendo la selección de las cookies según propósito.</p>
+<p>Por último le puedes dar un poco de estilo modificando el archivo style.css que cargas de la GDPR Cookie Notice, con los colores que más se ajustan al diseño.</p>
+
+<hr>
+<ul class='nav-post'><li>Anterior: <a href="/blog/posts/yaml/">YAML</a></li>
+</ul>
+
+    </main>
+
+    <footer>
+      <p> 
+        &copy; José Antonio Cano 2022
+        &nbsp;
+        <a title='sitemap.xml' href='/blog/sitemap.xml'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+</svg></a>
+&nbsp;
+  <a title='rss xml' href='/blog/feed/feed.xml'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"/>
+</svg>
+  </a>
+&nbsp;
+  <a  title='rss json' href='/blog/feed/feed.json'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></a>
+
+      </p>
+
+    </footer>
+ <script>
+
+
+</script> 
+    <!-- Current page: /blog/posts/aviso-cookies/ -->
+  </body>
+</html>

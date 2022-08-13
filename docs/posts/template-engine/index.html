@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>template engine</title>
+    <meta name="description" content="software que nos permite mezclar datos con una plantilla.">
+
+    <link rel="stylesheet" href="/blog/css/index.css">
+    <link rel="stylesheet" href="/blog/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/blog/css/prism-diff.css">
+    <link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Blog de desarrollo web">
+    <link rel="alternate" href="/blog/feed/feed.json" type="application/json" title="Blog de desarrollo web">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/blog/">Blog de desarrollo web</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/blog/">Home</a></li>
+        <li class="nav-item"><a href="/blog/posts/">Archivo</a></li>
+        <li class="nav-item"><a href="/blog/about/">sobre mí</a></li>
+      </ul>
+  
+     
+     
+    </header>
+
+    <main class="tmpl-post">
+
+   
+
+      <h1>template engine</h1>
+
+<time datetime="2022-07-24">24 Jul 2022</time>
+<a href="/blog/tags/utilidades/" class="post-tag">utilidades</a>
+<a href="/blog/tags/programacion/" class="post-tag">programación</a>
+
+<p>Los motores de plantillas se utilizan cuando desea crear rápidamente aplicaciones web que se dividen en diferentes componentes. Las plantillas también permiten una representación rápida de los datos del lado del servidor que deben pasarse a la aplicación.</p>
+<p>Por ejemplo, es posible que desee tener componentes como el cuerpo, la navegación, el pie de página, el tablero, etc.</p>
+<h2 id="motores-de-plantillas-populares" tabindex="-1">Motores de plantillas populares <a class="direct-link" href="#motores-de-plantillas-populares" aria-hidden="true">#</a></h2>
+<p>Los motores de plantillas se utilizan principalmente para aplicaciones del lado del servidor que se ejecutan en un solo servidor y no se crean como API. Los más populares  Handlebars (para JavaScript), Twig y Blade (para Laravel / PHP), JSP (para Java) o Ninja (de python).</p>
+<h2 id="como-funcionan-los-motores-de-plantillas" tabindex="-1">Cómo funcionan los motores de plantillas <a class="direct-link" href="#como-funcionan-los-motores-de-plantillas" aria-hidden="true">#</a></h2>
+<p>Cuando crea una aplicación del lado del servidor con un motor de plantillas, el motor de plantillas reemplaza las variables en un archivo de plantilla con valores reales y muestra este valor al cliente. Esto facilita la construcción rápida de nuestra aplicación.</p>
+<h3 id="ejemplo-con-un-motor-expressjs-de-plantillas-ejs" tabindex="-1">Ejemplo con un motor expressJS de plantillas ejs <a class="direct-link" href="#ejemplo-con-un-motor-expressjs-de-plantillas-ejs" aria-hidden="true">#</a></h3>
+<p>Para una aplicación del lado del servidor escrita con el tiempo de ejecución de NodeJS, puede usar un motor de plantilla.</p>
+<p>Los siguientes pasos demuestran cómo funcionan los motores de plantillas utilizando express Js y el motor de plantillas ejs. El ejemplo que se proporciona a continuación representa los datos de un usuario en la página web.</p>
+<h4 id="paso-1-instalacion-express-y-el-motor-de-plantillas-ejs" tabindex="-1">Paso 1: Instalación express y el motor de plantillas ejs <a class="direct-link" href="#paso-1-instalacion-express-y-el-motor-de-plantillas-ejs" aria-hidden="true">#</a></h4>
+<p>El siguiente comando instala el ejsmotor de plantilla y el expressmarco:</p>
+<pre class="language-bash"><code class="language-bash"><span class="token function">npm</span> <span class="token function">install</span> express ejs</code></pre>
+<h4 id="paso-2-configuracion-del-motor-de-visualizacion" tabindex="-1">Paso 2: Configuración del motor de visualización <a class="direct-link" href="#paso-2-configuracion-del-motor-de-visualizacion" aria-hidden="true">#</a></h4>
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">"express"</span><span class="token punctuation">)</span><br><span class="token keyword">const</span> app <span class="token operator">=</span> <span class="token function">express</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><br><span class="token comment">// Set the View Engine or Template Engine</span><br>app<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'view engine'</span><span class="token punctuation">,</span> <span class="token string">'ejs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>app<span class="token punctuation">.</span><span class="token function">listen</span><span class="token punctuation">(</span><span class="token number">3000</span><span class="token punctuation">)</span></code></pre>
+<p>En el código anterior, creamos nuestra aplicación express. La aplicación escucha en el puerto 3000.</p>
+<p>Esta línea de código: app.set('view engine', 'ejs')le dice a nuestra aplicación express que queremos usar EJS como nuestro motor de plantillas.</p>
+<h4 id="paso-3-configuracion-de-la-carpeta-de-visualizacion" tabindex="-1">Paso 3: Configuración de la carpeta de visualización <a class="direct-link" href="#paso-3-configuracion-de-la-carpeta-de-visualizacion" aria-hidden="true">#</a></h4>
+<p>Cree una carpeta llamada &quot;view&quot;. La carpeta de vista debe contener nuestras plantillas. Una de estas plantillas es index.ejs, que generará nuestra portada. La segunda plantilla es user.ejs, que se usará para pasar datos de usuario desde el lado del servidor para que se muestren inmediatamente en la página web.</p>
+<pre><code>index.js
+&gt;view
+   index.ejs
+   user.ejs
+</code></pre>
+<h4 id="paso-4-configuracion-de-las-rutas" tabindex="-1">Paso 4: Configuración de las rutas <a class="direct-link" href="#paso-4-configuracion-de-las-rutas" aria-hidden="true">#</a></h4>
+<p>Vamos a crear las rutas para nuestra página de inicio y página de usuario.</p>
+<p>Tenga en cuenta el res.render()método a continuación. Así es como renderizas una plantilla en expressJS.</p>
+<pre class="language-js"><code class="language-js">app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><br>  res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">"index"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><br> <br>app<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"/user"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span>res</span><span class="token punctuation">)</span><span class="token punctuation">{</span><br>  <span class="token keyword">const</span> user <span class="token operator">=</span> <span class="token punctuation">{</span><br>    <span class="token literal-property property">name</span><span class="token operator">:</span> <span class="token string">"Theodore Kelechukwu O."</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">stack</span><span class="token operator">:</span> <span class="token string">"MERN"</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">email</span><span class="token operator">:</span> <span class="token string">"theodoreonyejiaku@gmail.com"</span><span class="token punctuation">,</span><br>    <span class="token literal-property property">hubby</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"singing"</span><span class="token punctuation">,</span> <span class="token string">"playing guitar"</span><span class="token punctuation">,</span> <span class="token string">"reading"</span><span class="token punctuation">,</span> <span class="token string">"philosoph"</span><span class="token punctuation">]</span></code></pre>
+<p>Como hemos visto, la ruta predeterminada “\”, cuando se accede, muestra o renderiza la index.ejspágina. Mientras tanto, el “\usuario” muestra la user.ejspágina.</p>
+<p>Pasamos el userobjeto al objeto renderizado para pasar las userpropiedades a la página web y renderizarla.</p>
+<h4 id="paso-5-plantillas-de-nuestros-archivos-de-vista" tabindex="-1">Paso 5: Plantillas de nuestros archivos de vista <a class="direct-link" href="#paso-5-plantillas-de-nuestros-archivos-de-vista" aria-hidden="true">#</a></h4>
+<p>Ahora que hemos pasado los datos de usuario desde el lado del servidor, debemos mostrarlos de inmediato en nuestra interfaz o página web.</p>
+<p>index.ejs</p>
+<p>usuario.ejs</p>
+<pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>This is the title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span><br><br>  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>Welcome to User Details<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span>Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span> &lt;%= user.name %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span>Email:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span> &lt;%= user.email %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span><br>    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>b</span><span class="token punctuation">></span></span>Stack:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>b</span><span class="token punctuation">></span></span> &lt;%= user.stack %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">></span></span></code></pre>
+<p>Tenga en cuenta el &lt;%= variable %&gt;patrón de visualización de valores. Esa es la forma en que se usa en ejs. Observe también el user.forEach(); esto es para mostrar cuán poderosos pueden ser los motores de plantillas.</p>
+<pre class="language-html"><code class="language-html"><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">></span></span>template engine<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">></span></span><br><br><br><br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">></span></span><br>  <br><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">></span></span><br></code></pre>
+
+<hr>
+<ul class='nav-post'><li>Siguiente: <a href="/blog/posts/yaml/">YAML</a></li><li>Anterior: <a href="/blog/posts/core-web-vitals/">Core web vitals</a></li>
+</ul>
+
+    </main>
+
+    <footer>
+      <p> 
+        &copy; José Antonio Cano 2022
+        &nbsp;
+        <a title='sitemap.xml' href='/blog/sitemap.xml'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+</svg></a>
+&nbsp;
+  <a title='rss xml' href='/blog/feed/feed.xml'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"/>
+</svg>
+  </a>
+&nbsp;
+  <a  title='rss json' href='/blog/feed/feed.json'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></a>
+
+      </p>
+
+    </footer>
+ <script>
+
+
+</script> 
+    <!-- Current page: /blog/posts/template-engine/ -->
+  </body>
+</html>

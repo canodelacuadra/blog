@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Core web vitals</title>
+    <meta name="description" content="Realizar métricas para medir la experiencia de un usuario web.">
+
+    <link rel="stylesheet" href="/blog/css/index.css">
+    <link rel="stylesheet" href="/blog/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/blog/css/prism-diff.css">
+    <link rel="alternate" href="/blog/feed/feed.xml" type="application/atom+xml" title="Blog de desarrollo web">
+    <link rel="alternate" href="/blog/feed/feed.json" type="application/json" title="Blog de desarrollo web">
+  </head>
+  <body>
+    <header>
+      <h1 class="home"><a href="/blog/">Blog de desarrollo web</a></h1>
+      <ul class="nav">
+        <li class="nav-item"><a href="/blog/">Home</a></li>
+        <li class="nav-item"><a href="/blog/posts/">Archivo</a></li>
+        <li class="nav-item"><a href="/blog/about/">sobre mí</a></li>
+      </ul>
+  
+     
+     
+    </header>
+
+    <main class="tmpl-post">
+
+   
+
+      <h1>Core web vitals</h1>
+
+<time datetime="2022-07-24">24 Jul 2022</time>
+<a href="/blog/tags/analitica-web/" class="post-tag">analítica web</a>
+
+<h2 id="core-web-vitals" tabindex="-1">Core Web Vitals <a class="direct-link" href="#core-web-vitals" aria-hidden="true">#</a></h2>
+<p>Core Web Vitals como iniciativa de Google, nace de la necesidad de proporcionar un método unificado a los desarrolladores y webmasters, que les permitiera detectar de forma sencilla problemas de UX y WPO en una web.</p>
+<p>En este sentido, Google ha señalado tres indicadores que considera esenciales para brindar una buena experiencia de usuario. Estas tres métricas, están enfocadas en</p>
+<ol>
+<li>medir el tiempo que tarda en cargar una web, LCP</li>
+<li>la rapidez de interacción con el usuario</li>
+<li>y la estabilidad visual de la misma</li>
+</ol>
+<h3 id="largest-contentful-paint-lcp" tabindex="-1">Largest Contentful Paint (LCP) <a class="direct-link" href="#largest-contentful-paint-lcp" aria-hidden="true">#</a></h3>
+<p>La métrica Largest Contentful Paint, mide el tiempo que tarda en renderizarse en pantalla (above the fold) el contenido más grande.</p>
+<p>Indica el momento en el que el usuario ve algo relevante en pantalla (sin hacer scroll)
+El tiempo de respuesta del servidor está incluido en la medición
+El LCP puede corresponder a una imagen, texto o video
+largest contentful paint umbrales</p>
+<p>Para ofrecer una buena experiencia de usuario, el LCP debe ocurrir a los 2,5 segundos o menos. Hasta los 4 segundos, Google considera que el resultado se puede mejorar y por encima de este umbral, lo considera lento.</p>
+<h3 id="first-input-delay-fid" tabindex="-1">First Input Delay (FID) <a class="direct-link" href="#first-input-delay-fid" aria-hidden="true">#</a></h3>
+<p>La métrica First Input Delay, mide el tiempo que transcurre desde la primera interacción del usuario, hasta que el navegador responde a la misma.</p>
+<p>Para ofrecer una buena experiencia de usuario, el FID debe ocurrir en 100 milisegundos o menos. Hasta los 300 milisegundos, Google considera que el resultando se puede mejorar y por encima de este umbral, lo considera lento.</p>
+<p>first input delay umbrales</p>
+<p>Revela información de la primera impresión del usuario al hacer clic en la web
+La métrica se verá alterada dependiendo del momento, navegador y elemento clicado por el usuario
+Esta métrica no es posible simularla en laboratorio. Únicamente se puede medir sobre usuarios reales
+El tiempo de bloqueo total (TBT) es una métrica de laboratorio para hacer pruebas sin ninguna interacción directa del usuario. También es recomendable tener en cuenta el tiempo de interacción (TTI). Estas dos métricas, pueden ayudar a realizar estimaciones sobre la percepción del usuario en diferentes tipos de red y dispositivo</p>
+<h3 id="cumulative-layout-shift-cls" tabindex="-1">Cumulative Layout Shift (CLS) <a class="direct-link" href="#cumulative-layout-shift-cls" aria-hidden="true">#</a></h3>
+<p>La métrica Cumulative Layout Shift, es la responsable de evaluar la estabilidad visual de una web.</p>
+<p>A menor desplazamiento de elementos durante la carga, menor será la probabilidad de que el usuario haga clic por error en alguno de ellos
+La medición de los elementos de la página, se realiza a través de ventanas de sesión. Las ventanas de sesión, corresponden a diferentes partes de una página web a las que llega un usuario cuando hace scroll. La puntuación total para cada ventana de sesión, se denomina cambio de diseño acumulativo (CLS)
+El CLS no mide tiempo, sino que realiza un cálculo de cambios en las posiciones
+cumulative layout shift umbrales</p>
+<p>Para ofrecer una buena experiencia de usuario, el CLS debe ser menor o igual a 0,1. Hasta 0,25 Google considera que el resultando se puede mejorar y por encima de este umbral, lo considera pobre.</p>
+<h2 id="web-vitals" tabindex="-1">Web vitals <a class="direct-link" href="#web-vitals" aria-hidden="true">#</a></h2>
+<p>Web Vitals son señales de calidad clave para ofrecer una excelente UX en la web (<a href="https://web.dev/vitals">https://web.dev/vitals</a>). Esta extensión mide Core Web Vitals y brinda retroalimentación instantánea sobre las métricas de carga, interactividad y cambio de diseño. Es consistente con la forma en que Chrome mide estas métricas y las informa a otras herramientas de Google (p. ej., Informe de experiencia de usuario de Chrome, Información sobre la velocidad de la página, Consola de búsqueda).</p>
+<p>La extensión captura:
+Pintura con contenido más grande
+Cambio de diseño acumulativo
+Retraso de la primera entrada
+Interacción con la siguiente pintura (experimental)</p>
+<p>La extensión proporciona tres características principales:</p>
+<ol>
+<li>Ambient Badge: esto ayuda a verificar si una página supera los umbrales de Core Web Vitals.</li>
+</ol>
+<p>Una vez instalada, la extensión mostrará un ícono de insignia de estado deshabilitado hasta que navegue a una URL. En este punto, actualizará la insignia a verde o rojo dependiendo de si la URL supera los umbrales de métricas de Core Web Vitals.</p>
+<p>La insignia tiene varios estados:</p>
+<ul>
+<li>Deshabilitado - gris</li>
+<li>Pasando - verde</li>
+<li>Una o más métricas fallan - rojo</li>
+</ul>
+<p>Si una o más métricas fallan, la insignia animará los valores de estas métricas.</p>
+<ol start="2">
+<li>Desglose detallado en la ventana emergente</li>
+</ol>
+<p>Al hacer clic en el ícono de la insignia Ambient, podrá profundizar en los valores de métricas individuales. En este modo, la extensión también dirá si un valor de métrica puede cambiar o requiere una acción del usuario.</p>
+<p>Por ejemplo, First Input Delay requiere una interacción real (por ejemplo, hacer clic/tocar) con la página y estará en un estado de espera de entrada hasta que este sea el caso. Recomendamos consultar la documentación de web.dev para LCP, CLS y FID para comprender cuándo se asientan los valores de las métricas.</p>
+<p>A partir de la versión 1.0.0, la ventana emergente combina sus experiencias locales de Core Web Vitals con datos de usuarios reales del campo a través de la API Chrome UX Report (CrUX). Esta integración le brinda información contextual para ayudarlo a comprender qué tan similares son sus experiencias individuales a las de otros usuarios de escritorio en la misma página. También hemos agregado una nueva opción para &quot;Comparar experiencias locales con datos de campo del teléfono&quot;, si es necesario. Tenga en cuenta que es posible que los datos de CrUX no estén disponibles para algunas páginas, en cuyo caso intentamos cargar datos de campo para el origen en su conjunto.</p>
+<ol start="3">
+<li>Superposición de HUD</li>
+</ol>
+<p>La superposición muestra una pantalla de visualización frontal (HUD) que se superpone a su página. Es útil si necesita una vista persistente de sus métricas de Core Web Vitals durante el desarrollo. Para habilitar la superposición:</p>
+<p>Haga clic con el botón derecho en la insignia de Ambient y vaya a Opciones.
+Verifique Mostrar superposición de HUD y haga clic en 'Guardar'
+Vuelva a cargar la pestaña de la URL que desea probar. La superposición ahora debería estar presente.</p>
+
+<hr>
+<ul class='nav-post'><li>Siguiente: <a href="/blog/posts/template-engine/">template engine</a></li><li>Anterior: <a href="/blog/posts/crear-proyecto-eleventy/">Crear proyecto web con eleventy</a></li>
+</ul>
+
+    </main>
+
+    <footer>
+      <p> 
+        &copy; José Antonio Cano 2022
+        &nbsp;
+        <a title='sitemap.xml' href='/blog/sitemap.xml'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-diagram-3-fill" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H14a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 2 7h5.5V6A1.5 1.5 0 0 1 6 4.5v-1zm-6 8A1.5 1.5 0 0 1 1.5 10h1A1.5 1.5 0 0 1 4 11.5v1A1.5 1.5 0 0 1 2.5 14h-1A1.5 1.5 0 0 1 0 12.5v-1zm6 0A1.5 1.5 0 0 1 7.5 10h1a1.5 1.5 0 0 1 1.5 1.5v1A1.5 1.5 0 0 1 8.5 14h-1A1.5 1.5 0 0 1 6 12.5v-1zm6 0a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1z"/>
+</svg></a>
+&nbsp;
+  <a title='rss xml' href='/blog/feed/feed.xml'>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss" viewBox="0 0 16 16">
+  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+  <path d="M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-3-8.5a1 1 0 0 1 1-1c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1-1-1zm0 4a1 1 0 0 1 1-1 6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1-1-1z"/>
+</svg>
+  </a>
+&nbsp;
+  <a  title='rss json' href='/blog/feed/feed.json'><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-rss-fill" viewBox="0 0 16 16">
+  <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5c5.523 0 10 4.477 10 10a1 1 0 1 1-2 0 8 8 0 0 0-8-8 1 1 0 0 1 0-2zm0 4a6 6 0 0 1 6 6 1 1 0 1 1-2 0 4 4 0 0 0-4-4 1 1 0 0 1 0-2zm.5 7a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/>
+</svg></a>
+
+      </p>
+
+    </footer>
+ <script>
+
+
+</script> 
+    <!-- Current page: /blog/posts/core-web-vitals/ -->
+  </body>
+</html>
